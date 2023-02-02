@@ -1,7 +1,6 @@
 using System.Numerics;
-using SimpleCityBuilder.Entities;
 
-namespace SimpleCityBuilder.Utils;
+namespace SimpleCityBuilder.Engine.Utils;
 
 public class MathHelper
 {

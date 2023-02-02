@@ -1,4 +1,4 @@
-namespace SimpleCityBuilder.Textures;
+namespace SimpleCityBuilder.Engine.Textures;
 
 public class ModelTexture
 {

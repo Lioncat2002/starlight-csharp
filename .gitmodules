@@ -1,0 +1,3 @@
+[submodule "src/Engine/Models/ModelLoader/CsharpVoxReader"]
+	path = src/Engine/Models/ModelLoader/CsharpVoxReader
+	url = git@github.com:barraudf/CsharpVoxReader.git

@@ -1,6 +1,6 @@
-using SimpleCityBuilder.Textures;
+using SimpleCityBuilder.Engine.Textures;
 
-namespace SimpleCityBuilder.Models;
+namespace SimpleCityBuilder.Engine.Models;
 
 public class TexturedModel
 {

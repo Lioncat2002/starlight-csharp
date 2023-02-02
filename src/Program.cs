@@ -1,14 +1,13 @@
-﻿using System.Drawing;
-using System.Numerics;
+﻿using System.Numerics;
 using Silk.NET.Input;
 using Silk.NET.Maths;
 using Silk.NET.OpenGL;
 using Silk.NET.Windowing;
-using SimpleCityBuilder.Entities;
-using SimpleCityBuilder.Models;
-using SimpleCityBuilder.Renderer;
-using SimpleCityBuilder.Shaders;
-using SimpleCityBuilder.Textures;
+using SimpleCityBuilder.Engine.Entities;
+using SimpleCityBuilder.Engine.Models;
+using SimpleCityBuilder.Engine.Renderer;
+using SimpleCityBuilder.Engine.Shaders;
+using SimpleCityBuilder.Engine.Textures;
 
 namespace SimpleCityBuilder
 {
@@ -17,7 +16,7 @@ namespace SimpleCityBuilder
         private static IWindow? _window;
         private static GL? _Gl;
         private static Loader? _loader;
-        private static Renderer.Renderer? _renderer;
+        private static Renderer? _renderer;
         private static RawModel? _model;
         private static StaticShader _staticShader;
         private static ModelTexture _texture;
@@ -139,7 +138,7 @@ namespace SimpleCityBuilder
             
             _model = _loader.loadToVAO(vertices,indices,textureCoords);
             _staticShader = new StaticShader(_Gl);
-            _renderer = new Renderer.Renderer(_Gl,_staticShader);
+            _renderer = new Renderer(_Gl,_staticShader);
             _texture = new ModelTexture(_loader.loadTexture("wall"));
             _texturedModel = new TexturedModel(_model, _texture);
             _entity = new Entity(_texturedModel, new Vector3(0, 0, -2), new Vector3(0, 0, 0), 1);

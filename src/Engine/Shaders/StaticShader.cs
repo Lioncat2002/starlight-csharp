@@ -1,8 +1,8 @@
 using System.Numerics;
 using Silk.NET.OpenGL;
-using SimpleCityBuilder.Entities;
+using SimpleCityBuilder.Engine.Entities;
 
-namespace SimpleCityBuilder.Shaders;
+namespace SimpleCityBuilder.Engine.Shaders;
 
 public class StaticShader:ShaderProgram
 {

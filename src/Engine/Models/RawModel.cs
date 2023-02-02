@@ -1,4 +1,4 @@
-namespace SimpleCityBuilder.Models;
+namespace SimpleCityBuilder.Engine.Models;
 
 public class RawModel
 {

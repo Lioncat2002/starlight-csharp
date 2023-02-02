@@ -1,7 +1,7 @@
 using System.Numerics;
 using Silk.NET.OpenGL;
 
-namespace SimpleCityBuilder.Shaders;
+namespace SimpleCityBuilder.Engine.Shaders;
 
 public abstract class ShaderProgram
 {

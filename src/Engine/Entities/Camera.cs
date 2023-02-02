@@ -1,8 +1,8 @@
 using System.Numerics;
 using Silk.NET.Input;
-using SimpleCityBuilder.Utils;
+using SimpleCityBuilder.Engine.Utils;
 
-namespace SimpleCityBuilder.Entities;
+namespace SimpleCityBuilder.Engine.Entities;
 
 public class Camera
 {

@@ -1,12 +1,11 @@
-using System.Diagnostics;
 using System.Numerics;
 using Silk.NET.OpenGL;
-using SimpleCityBuilder.Entities;
-using SimpleCityBuilder.Models;
-using SimpleCityBuilder.Shaders;
-using SimpleCityBuilder.Utils;
+using SimpleCityBuilder.Engine.Entities;
+using SimpleCityBuilder.Engine.Models;
+using SimpleCityBuilder.Engine.Shaders;
+using SimpleCityBuilder.Engine.Utils;
 
-namespace SimpleCityBuilder.Renderer;
+namespace SimpleCityBuilder.Engine.Renderer;
 
 public class Renderer
 {

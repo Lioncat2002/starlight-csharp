@@ -1,11 +1,10 @@
-using Silk.NET.GLFW;
 using Silk.NET.OpenGL;
-using SimpleCityBuilder.Models;
+using SimpleCityBuilder.Engine.Models;
 using SixLabors.ImageSharp.PixelFormats;
 using Image = SixLabors.ImageSharp.Image;
 
 
-namespace SimpleCityBuilder.Renderer;
+namespace SimpleCityBuilder.Engine.Renderer;
 
 public class Loader
 {

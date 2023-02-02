@@ -1,7 +1,7 @@
 using System.Numerics;
-using SimpleCityBuilder.Models;
+using SimpleCityBuilder.Engine.Models;
 
-namespace SimpleCityBuilder.Entities;
+namespace SimpleCityBuilder.Engine.Entities;
 
 public class Entity
 {

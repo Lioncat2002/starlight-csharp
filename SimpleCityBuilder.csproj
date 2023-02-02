@@ -16,7 +16,7 @@
 
     <ItemGroup>
       <Folder Include="Content" />
-      <Folder Include="src\Engine" />
+      <Folder Include="src\Engine\Input" />
     </ItemGroup>
 
 </Project>
