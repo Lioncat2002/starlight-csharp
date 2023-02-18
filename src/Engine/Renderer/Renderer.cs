@@ -33,7 +33,7 @@ public class Renderer
         
         Gl.Enable(EnableCap.DepthTest);
         Gl.Clear((uint) (ClearBufferMask.ColorBufferBit | ClearBufferMask.DepthBufferBit));
-        Gl.ClearColor(1,0,0,1);
+        Gl.ClearColor(0,181,226,1);
 
     }
     public unsafe void render(Entity entity,StaticShader shader)

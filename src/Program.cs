@@ -4,6 +4,7 @@ using Silk.NET.Maths;
 using Silk.NET.OpenGL;
 using Silk.NET.Windowing;
 using SimpleCityBuilder.Engine.Entities;
+using SimpleCityBuilder.Engine.Input;
 using SimpleCityBuilder.Engine.Models;
 using SimpleCityBuilder.Engine.Renderer;
 using SimpleCityBuilder.Engine.Shaders;
@@ -14,17 +15,20 @@ namespace SimpleCityBuilder
     public class Program
     {
         private static IWindow? _window;
-        private static GL? _Gl;
+        private static GL? _gl;
         private static Loader? _loader;
         private static Renderer? _renderer;
         private static RawModel? _model;
-        private static StaticShader _staticShader;
-        private static ModelTexture _texture;
-        private static TexturedModel _texturedModel;
-        private static Entity _entity;
-        private static Camera _camera;
+        private static StaticShader? _staticShader;
+        private static ModelTexture? _texture;
+        private static TexturedModel? _texturedModel;
+        private static Keyboard? _keyboard;
+        private static Camera? _camera;
         
-        private static readonly float[] vertices = {			
+        private static List<Entity>? _level;
+        
+
+        private static readonly float[] Vertices = {			
             -0.5f,0.5f,-0.5f,	
             -0.5f,-0.5f,-0.5f,	
             0.5f,-0.5f,-0.5f,	
@@ -58,7 +62,7 @@ namespace SimpleCityBuilder
         };
 
         //Index data, uploaded to the EBO.
-        private static readonly int[] indices = {
+        private static readonly int[] Indices = {
             0,1,3,	
             3,1,2,	
             4,5,7,
@@ -74,7 +78,7 @@ namespace SimpleCityBuilder
 
         };
 
-        private static readonly float[] textureCoords = {
+        private static readonly float[] TextureCoords = {
 				
             0,0,
             0,1,
@@ -108,7 +112,7 @@ namespace SimpleCityBuilder
             //Create a window.
             var options = WindowOptions.Default;
             options.Size = new Vector2D<int>(800, 600);
-            options.Title = "Testing";
+            options.Title = "StarLight";
             options.PreferredDepthBufferBits = 1;
 
             _window = Window.Create(options);
@@ -130,38 +134,51 @@ namespace SimpleCityBuilder
             for (int i = 0; i < input.Keyboards.Count; i++)
             {
                 input.Keyboards[i].KeyDown += KeyDown;
+                input.Keyboards[i].KeyUp += KeyUp;
             }
             
-            _Gl = GL.GetApi(_window);
+            _gl = GL.GetApi(_window);
 
-            _loader = new Loader(_Gl);
-            
-            _model = _loader.loadToVAO(vertices,indices,textureCoords);
-            _staticShader = new StaticShader(_Gl);
-            _renderer = new Renderer(_Gl,_staticShader);
-            _texture = new ModelTexture(_loader.loadTexture("wall"));
+            _loader = new Loader(_gl);
+            _level = new List<Entity>();
+            _model = _loader.loadToVAO(Vertices,Indices,TextureCoords);
+            _staticShader = new StaticShader(_gl);
+            _renderer = new Renderer(_gl,_staticShader);
+            _texture = new ModelTexture(_loader.loadTexture("kenney_tinydungeon/Tiles/tile_0049"));
             _texturedModel = new TexturedModel(_model, _texture);
-            _entity = new Entity(_texturedModel, new Vector3(0, 0, -2), new Vector3(0, 0, 0), 1);
 
+            _keyboard = new Keyboard();
+            
+            for (int i = 0; i < 10; i++)
+            {
+                for (int j = 0; j < 10; j++)
+                {
+                    var level_block = new Entity(_texturedModel, new Vector3(i, -1, j), new Vector3(0, 0, 0), 1);
+                    _level.Add(level_block);
+                }    
+            }
+            
+            
             _camera = new Camera();
         }
 
-        private static void OnRender(double obj)
+        private static void OnRender(double time)
         {
             _renderer.start();
             _staticShader.start();
             _staticShader.loadViewMatrix(_camera);
-            _renderer.render(_entity,_staticShader);
+            foreach (var obj in _level)
+            {
+                _renderer.render(obj,_staticShader);
+            }
             _staticShader.stop();
             //Here all rendering should be done.
         }
 
+        
         private static void OnUpdate(double deltaTime)
         {
-            float speed = 0.2f * (float)deltaTime;
-            //_entity.increasePosition(new Vector3(0,0,-speed));
-            
-            Console.WriteLine(_camera.Position);
+            _camera.move(_keyboard);
         }
 
         private static void KeyDown(IKeyboard arg1, Key arg2, int arg3)
@@ -175,9 +192,14 @@ namespace SimpleCityBuilder
                 _staticShader.dispose();
             }
 
-            Vector3 position=new Vector3();
+            _keyboard.KeyPress(arg2);
             //Camera movement
-            _camera.move(arg1);
+            //_camera.move(arg1);
+        }
+
+        private static void KeyUp(IKeyboard arg1, Key arg2, int arg3)
+        {
+            _keyboard.KeyUp(arg2);
         }
     }
 }

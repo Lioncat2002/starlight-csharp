@@ -37,7 +37,7 @@ public class Loader
         Gl.ActiveTexture(TextureUnit.Texture0);
         Gl.BindTexture(TextureTarget.Texture2D,textureID);
         //Loading an image using imagesharp.
-        using (var img = Image.Load<Rgba32>("/run/media/kittycat/Linux_files/csharp_stuff/SimpleCityBuilder/Content/"+fileName+".png"))
+        using (var img = Image.Load<Rgba32>("Content/"+fileName+".png"))
         {
             //Reserve enough memory from the gpu for the whole image
             Gl.TexImage2D(TextureTarget.Texture2D, 0, InternalFormat.Rgba8, (uint)img.Width, (uint)img.Height, 0,

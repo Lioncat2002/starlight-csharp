@@ -6,8 +6,8 @@ namespace SimpleCityBuilder.Engine.Shaders;
 
 public class StaticShader:ShaderProgram
 {
-    public static string VERTEX_FILE = "shaders/vertex.shader";
-    public static string FRAGMENT_FILE = "shaders/fragment.shader";
+    public static string VERTEX_FILE = "src/Engine/Shaders/vertex.shader";
+    public static string FRAGMENT_FILE = "src/Engine/Shaders/fragment.shader";
 
     private int location_transformation_matrix;
     private int location_projectionMatrix;
