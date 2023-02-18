@@ -146,15 +146,24 @@ namespace SimpleCityBuilder
             _renderer = new Renderer(_gl,_staticShader);
             _texture = new ModelTexture(_loader.loadTexture("kenney_tinydungeon/Tiles/tile_0049"));
             _texturedModel = new TexturedModel(_model, _texture);
-
+            var _texture1 = new ModelTexture(_loader.loadTexture("kenney_tinydungeon/Tiles/tile_0040"));
+            var _texturedModel1 = new TexturedModel(_model, _texture1);
             _keyboard = new Keyboard();
             
             for (int i = 0; i < 10; i++)
             {
                 for (int j = 0; j < 10; j++)
                 {
-                    var level_block = new Entity(_texturedModel, new Vector3(i, -1, j), new Vector3(0, 0, 0), 1);
-                    _level.Add(level_block);
+                    Entity level_block;
+                    if (i == 0 || j == 0 || i==9 || j==9)
+                    {
+                        level_block = new Entity(_texturedModel1, new Vector3(i, 0, j), new Vector3(0, 0, 0), 1);
+                    }
+                    else
+                    {
+                        level_block = new Entity(_texturedModel, new Vector3(i, -1, j), new Vector3(0, 0, 0), 1);
+                    }
+                    _level.Add(level_block);   
                 }    
             }
             
