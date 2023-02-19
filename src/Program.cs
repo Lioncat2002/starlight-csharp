@@ -157,11 +157,11 @@ namespace SimpleCityBuilder
                     Entity level_block;
                     if (i == 0 || j == 0 || i==9 || j==9)
                     {
-                        level_block = new Entity(_texturedModel1, new Vector3(i, 0, j), new Vector3(0, 0, 0), 1);
+                        level_block = new Entity(_texturedModel1, new Vector3(i-5, 0, j-5), new Vector3(0, 0, 0), 1);
                     }
                     else
                     {
-                        level_block = new Entity(_texturedModel, new Vector3(i, -1, j), new Vector3(0, 0, 0), 1);
+                        level_block = new Entity(_texturedModel, new Vector3(i-5, -1, j-5), new Vector3(0, 0, 0), 1);
                     }
                     _level.Add(level_block);   
                 }    
@@ -202,8 +202,7 @@ namespace SimpleCityBuilder
             }
 
             _keyboard.KeyPress(arg2);
-            //Camera movement
-            //_camera.move(arg1);
+            
         }
 
         private static void KeyUp(IKeyboard arg1, Key arg2, int arg3)

@@ -12,12 +12,11 @@ public class Camera
     private float pitch;
     private float yaw;
     private float roll;
-    private bool isPressed=false;
 
     public Camera()
     {
-        position = new Vector3(0, 0, 0);
         lookAt = new Vector3();
+        position = new Vector3();
     }
 
     public Matrix4x4 GetViewMatrix()
@@ -29,44 +28,35 @@ public class Camera
 
     public void move(Keyboard keyboard)
     {
-        var lookAtMat=GetViewMatrix();
-        lookAt.X = lookAtMat.M13;
-        lookAt.Y = lookAtMat.M23;
-        lookAt.Y = lookAtMat.M33;
-
+        var lookAtMat = GetViewMatrix();
+        var lookAtInViewSpace = new Vector3(0, 0, -1);
+        Matrix4x4.Invert(lookAtMat, out lookAtMat);
+        lookAt=Vector3.TransformNormal(lookAtInViewSpace,lookAtMat);
         var upVector = new Vector3(0,1,0);
+        Vector3 forwardVector = new Vector3(lookAtMat.M13,lookAtMat.M23,lookAtMat.M33);
         
-        Vector3 forwardVector = lookAt - position;
         forwardVector=Vector3.Normalize(forwardVector);
-        Console.WriteLine("Forward vector:="+forwardVector);
-        Console.WriteLine("LookAt vector:="+lookAt);
-
         if (keyboard.KeyDown(Key.W))
         {
-            position -= forwardVector * 0.02f;
-            lookAt -= forwardVector * 0.02f;
-            //position.Z -= 0.2f;
-            //isPressed = true;
+            position += forwardVector * 0.02f;
+            
         }
         if (keyboard.KeyDown(Key.A))
         {
             Vector3 leftVector = Vector3.Cross(upVector, forwardVector);
-            position -= leftVector * 0.02f;
-            lookAt -= leftVector * 0.02f;
-            //position.X -= 0.2f;
+            position += leftVector * 0.02f;
+           
         }
         if (keyboard.KeyDown(Key.S))
         {
-            position += forwardVector * 0.02f;
-            lookAt+= forwardVector * 0.02f;
-            //position.Z += 0.2f;
+            position -= forwardVector * 0.02f;
+            
         }
         if (keyboard.KeyDown(Key.D))
         {
-            Vector3 rightVector = Vector3.Cross(forwardVector,upVector);
-            position += rightVector * 0.02f;
-            lookAt += rightVector * 0.02f;
-            //position.X += 0.2f;
+            Vector3 leftVector = Vector3.Cross(upVector, forwardVector);;
+            position -= leftVector * 0.02f;
+            
         }
         if (keyboard.KeyDown(Key.Q) )
         {
