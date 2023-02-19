@@ -1,11 +1,11 @@
 using System.Numerics;
 using Silk.NET.OpenGL;
-using SimpleCityBuilder.Engine.Entities;
-using SimpleCityBuilder.Engine.Models;
-using SimpleCityBuilder.Engine.Shaders;
-using SimpleCityBuilder.Engine.Utils;
+using StarLight.Engine.Entities;
+using StarLight.Engine.Models;
+using StarLight.Engine.Shaders;
+using StarLight.Engine.Utils;
 
-namespace SimpleCityBuilder.Engine.Renderer;
+namespace StarLight.Engine.Renderer;
 
 public class Renderer
 {

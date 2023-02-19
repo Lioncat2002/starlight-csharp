@@ -1,10 +1,10 @@
 using Silk.NET.OpenGL;
-using SimpleCityBuilder.Engine.Models;
 using SixLabors.ImageSharp.PixelFormats;
+using StarLight.Engine.Models;
 using Image = SixLabors.ImageSharp.Image;
 
 
-namespace SimpleCityBuilder.Engine.Renderer;
+namespace StarLight.Engine.Renderer;
 
 public class Loader
 {

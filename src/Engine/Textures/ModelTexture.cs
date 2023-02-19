@@ -1,4 +1,4 @@
-namespace SimpleCityBuilder.Engine.Textures;
+namespace StarLight.Engine.Textures;
 
 public class ModelTexture
 {

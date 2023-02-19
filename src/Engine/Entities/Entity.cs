@@ -1,7 +1,7 @@
 using System.Numerics;
-using SimpleCityBuilder.Engine.Models;
+using StarLight.Engine.Models;
 
-namespace SimpleCityBuilder.Engine.Entities;
+namespace StarLight.Engine.Entities;
 
 public class Entity
 {

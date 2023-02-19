@@ -1,6 +1,6 @@
 using Silk.NET.Input;
 
-namespace SimpleCityBuilder.Engine.Input;
+namespace StarLight.Engine.Input;
 
 public class Keyboard
 {

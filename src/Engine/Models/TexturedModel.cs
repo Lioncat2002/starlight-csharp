@@ -1,6 +1,6 @@
-using SimpleCityBuilder.Engine.Textures;
+using StarLight.Engine.Textures;
 
-namespace SimpleCityBuilder.Engine.Models;
+namespace StarLight.Engine.Models;
 
 public class TexturedModel
 {

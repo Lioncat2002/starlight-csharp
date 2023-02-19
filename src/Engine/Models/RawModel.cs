@@ -1,4 +1,4 @@
-namespace SimpleCityBuilder.Engine.Models;
+namespace StarLight.Engine.Models;
 
 public class RawModel
 {

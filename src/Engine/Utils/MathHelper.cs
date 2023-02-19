@@ -1,6 +1,6 @@
 using System.Numerics;
 
-namespace SimpleCityBuilder.Engine.Utils;
+namespace StarLight.Engine.Utils;
 
 public class MathHelper
 {

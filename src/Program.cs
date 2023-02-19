@@ -3,12 +3,12 @@ using Silk.NET.Input;
 using Silk.NET.Maths;
 using Silk.NET.OpenGL;
 using Silk.NET.Windowing;
-using SimpleCityBuilder.Engine.Entities;
-using SimpleCityBuilder.Engine.Input;
-using SimpleCityBuilder.Engine.Models;
-using SimpleCityBuilder.Engine.Renderer;
-using SimpleCityBuilder.Engine.Shaders;
-using SimpleCityBuilder.Engine.Textures;
+using StarLight.Engine.Entities;
+using StarLight.Engine.Input;
+using StarLight.Engine.Models;
+using StarLight.Engine.Renderer;
+using StarLight.Engine.Shaders;
+using StarLight.Engine.Textures;
 
 namespace SimpleCityBuilder
 {
