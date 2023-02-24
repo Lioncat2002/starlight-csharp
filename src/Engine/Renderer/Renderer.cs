@@ -10,6 +10,8 @@ namespace StarLight.Engine.Renderer;
 public class Renderer
 {
     private GL Gl;
+    private StaticShader staticShader;
+    
     private Matrix4x4 projectionMatrix;
 
     private static float FOV = 70;
@@ -22,10 +24,11 @@ public class Renderer
     public Renderer(GL Gl,StaticShader staticShader)
     {
         this.Gl = Gl;
+        this.staticShader = staticShader;
         createProjectionMatrix();
-        staticShader.start();
-        staticShader.loadProjectionMatrix(projectionMatrix);
-        staticShader.stop();
+        this.staticShader.start();
+        this.staticShader.loadProjectionMatrix(projectionMatrix);
+        this.staticShader.stop();
     }
 
     public void start()
@@ -36,7 +39,7 @@ public class Renderer
         Gl.ClearColor(0,181,226,1);
 
     }
-    public unsafe void render(Entity entity,StaticShader shader)
+    public unsafe void render(Entity entity)
     {
         TexturedModel texturedModel = entity.Model;
         RawModel model = texturedModel.getRawModel();
@@ -46,7 +49,7 @@ public class Renderer
         Matrix4x4 transformationMatrix =
             MathHelper.CreateTransformationMatrix4X4(entity.Position, entity.Rotation, entity.Scale);
         
-        shader.loadTranformationMatrix(transformationMatrix);
+        staticShader.loadTranformationMatrix(transformationMatrix);
         Gl.ActiveTexture(TextureUnit.Texture0);
         Gl.BindTexture(TextureTarget.Texture2D,texturedModel.getTexture().getID());
         Gl.DrawElements(PrimitiveType.Triangles,model.getVertexCount(),DrawElementsType.UnsignedInt, null);
