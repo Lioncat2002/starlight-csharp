@@ -16,10 +16,11 @@ public class Game1:Entry
     private static Renderer? _renderer;
     private static RawModel? _model;
     private static ModelTexture? _texture;
-    private static TexturedModel? _texturedModel;
+    private static TexturedModel? _ground;
     private static FirstPersonCam? _firstPersonCam;
 
     private static List<Entity>? _level;
+    private static LevelLoader _levelLoader;
     
     public static void Main(string[] args)
     {
@@ -46,6 +47,7 @@ public class Game1:Entry
         //a list of all the entities in the level so that it is easier to render
         _level = new List<Entity>();
         
+        
         staticShader = new StaticShader(Gl);
         _renderer = new Renderer(Gl,staticShader);
 
@@ -54,42 +56,44 @@ public class Game1:Entry
         
         //loading the texture 1 and assign it to a model with texture
         _texture = new ModelTexture(Loader.loadTexture("kenney_tinydungeon/Tiles/tile_0049"));
-        _texturedModel = new TexturedModel(_model, _texture);
+        _ground = new TexturedModel(_model, _texture);
         
         //loading the texture 2 and assign it to a model with texture
         var _texture1 = new ModelTexture(Loader.loadTexture("kenney_tinydungeon/Tiles/tile_0040"));
-        var _texturedModel1 = new TexturedModel(_model, _texture1);
-        
-        //quick implementation to loading a level(basically a square arena)
-        for (int i = 0; i < 10; i++)
-        {
-            for (int j = 0; j < 10; j++)
-            {
-                Entity level_block;
-                if (i == 0 || j == 0 || i==9 || j==9)
-                {
-                    //walls
-                    level_block = new Entity(_texturedModel1, new Vector3(i-5, 0, j-5), new Vector3(0, 0, 0), 1);
-                }
-                else
-                {
-                    //ground
-                    level_block = new Entity(_texturedModel, new Vector3(i-5, -1, j-5), new Vector3(0, 0, 0), 1);
-                }
-                //push into the level list
-                _level.Add(level_block);   
-            }    
-        }
-            
+        var _wall = new TexturedModel(_model, _texture1);
+        _levelLoader = new LevelLoader(_wall,_ground);
+        //LevelLoader reads from an array of string and loads it into a list
+        _level = _levelLoader.Load();
         //initialize new camera
         _firstPersonCam=new FirstPersonCam();
+        _firstPersonCam.Position = new Vector3(-1f, 0.1f, 0f);
+        _firstPersonCam.Speed = 0.05f;
+    }
+
+    public bool Intersect(Vector3 a,Vector3 b)
+    {
+        return a.X <= b.X + 0.6f &&
+               a.X + 0.6f >= b.X &&
+               a.Y <= b.Y + 0.6f &&
+               a.Y+0.6f >= b.Y &&
+               a.Z <= b.Z+0.6f &&
+               a.Z+0.6f >= b.Z;
     }
 
     public override void OnUpdate(double deltaTime)
     {
         base.OnUpdate(deltaTime);
         //camera update
+        var previousPosition = _firstPersonCam.Position;
         _firstPersonCam.Move(Keyboard);
+        foreach (var block in _level)
+        {
+            if (Intersect(_firstPersonCam.Position, block.Position))
+            {
+                _firstPersonCam.Position = previousPosition;
+            }
+          
+        }
         
     }
 
