@@ -1,6 +1,4 @@
 using System.Numerics;
-using Silk.NET.Input;
-using StarLight.Engine.Input;
 using StarLight.Engine.Utils;
 
 namespace StarLight.Engine.Camera;

@@ -68,6 +68,7 @@ public class Game1:Entry
         _firstPersonCam=new FirstPersonCam();
         _firstPersonCam.Position = new Vector3(-1f, 0.1f, 0f);
         _firstPersonCam.Speed = 0.05f;
+        
     }
 
     public bool Intersect(Vector3 a,Vector3 b)
