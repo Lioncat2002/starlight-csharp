@@ -19,9 +19,12 @@ namespace StarLight.Engine
         {
             //Set-up input context.
             IInputContext input = window.CreateInput();
+            //support for multiple keyboards
             for (int i = 0; i < input.Keyboards.Count; i++)
             {
+                //keydown events
                 input.Keyboards[i].KeyDown += KeyDown;
+                //keyup events
                 input.Keyboards[i].KeyUp += KeyUp;
             }
             Gl = GL.GetApi(window);
@@ -31,7 +34,8 @@ namespace StarLight.Engine
 
         public virtual void OnRender(double time)
         {
-            staticShader.start();
+            
+            
         }
 
         

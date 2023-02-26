@@ -2,6 +2,7 @@ namespace Starlight.Game;
 
 public class Constants
 {
+	//
     public static readonly float[] Vertices = {			
         -0.5f,0.5f,-0.5f,	
         -0.5f,-0.5f,-0.5f,	
