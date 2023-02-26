@@ -10,6 +10,6 @@ uniform mat4 projectionMatrix;
 uniform mat4 viewMatrix;
 
 void main(){
-    gl_Position=projectionMatrix*viewMatrix*transformationMatrix*vec4(position,1.0);
-    pass_textureCoords=textureCoords;
+    gl_Position=projectionMatrix*viewMatrix*transformationMatrix*vec4(position,1.0);//the matrices must be multiplied in this order
+    pass_textureCoords=textureCoords;//pass it on to the fragment shader
 }

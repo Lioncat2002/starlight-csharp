@@ -1,5 +1,6 @@
 using System.Numerics;
 using Silk.NET.OpenGL;
+using StarLight.Engine.Camera;
 using StarLight.Engine.Entities;
 using StarLight.Engine.Models;
 using StarLight.Engine.Shaders;
@@ -42,17 +43,20 @@ public class Renderer
     public unsafe void render(Entity entity)
     {
         TexturedModel texturedModel = entity.Model;
-        RawModel model = texturedModel.getRawModel();
-        Gl.BindVertexArray(model.getVaoID());
+        RawModel model = texturedModel.RawModel;
+        Gl.BindVertexArray(model.VaoId);
         Gl.EnableVertexAttribArray(0);
         Gl.EnableVertexAttribArray(1);
         Matrix4x4 transformationMatrix =
             MathHelper.CreateTransformationMatrix4X4(entity.Position, entity.Rotation, entity.Scale);
         
         staticShader.loadTranformationMatrix(transformationMatrix);
+        //activate one of the textures storage provided by opengl
         Gl.ActiveTexture(TextureUnit.Texture0);
-        Gl.BindTexture(TextureTarget.Texture2D,texturedModel.getTexture().getID());
-        Gl.DrawElements(PrimitiveType.Triangles,model.getVertexCount(),DrawElementsType.UnsignedInt, null);
+        //bind the texture from the textured model
+        Gl.BindTexture(TextureTarget.Texture2D,texturedModel.Texture.TextureId);
+        //draw the model using triangle
+        Gl.DrawElements(PrimitiveType.Triangles,model.VertexCount,DrawElementsType.UnsignedInt, null);
         Gl.DisableVertexAttribArray(0);
         Gl.DisableVertexAttribArray(1);
         Gl.BindVertexArray(0);

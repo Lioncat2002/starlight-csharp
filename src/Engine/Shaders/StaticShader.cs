@@ -1,6 +1,6 @@
 using System.Numerics;
 using Silk.NET.OpenGL;
-using StarLight.Engine.Entities;
+using StarLight.Engine.Camera;
 
 namespace StarLight.Engine.Shaders;
 
@@ -10,9 +10,9 @@ public class StaticShader:ShaderProgram
     public static string FRAGMENT_FILE = "src/Engine/Shaders/fragment.shader";
 
     private int location_transformation_matrix;
-    private int location_projectionMatrix;
-    private int location_viewMatrix;
-    public StaticShader(GL Gl) : base(Gl, VERTEX_FILE, FRAGMENT_FILE)
+    private int location_projection_matrix;
+    private int location_view_matrix;
+    public StaticShader(GL Gl) : base(Gl, VERTEX_FILE, FRAGMENT_FILE) //calling base class constructor
     {
         
     }
@@ -20,8 +20,8 @@ public class StaticShader:ShaderProgram
     protected override void getAllUniformLocations()
     {
         location_transformation_matrix = getUniformLocation("transformationMatrix");
-        location_projectionMatrix = getUniformLocation("projectionMatrix");
-        location_viewMatrix = getUniformLocation("viewMatrix");
+        location_projection_matrix = getUniformLocation("projectionMatrix");
+        location_view_matrix = getUniformLocation("viewMatrix");
     }
 
     public void loadTranformationMatrix(Matrix4x4 matrix)
@@ -31,13 +31,13 @@ public class StaticShader:ShaderProgram
 
     public void loadProjectionMatrix(Matrix4x4 matrix)
     {
-        loadMatrix(location_projectionMatrix,matrix);
+        loadMatrix(location_projection_matrix,matrix);
     }
 
-    public void loadViewMatrix(Camera camera)
+    public void loadViewMatrix(Camera.Camera camera)
     {
         Matrix4x4 matrix = camera.GetViewMatrix();
-        loadMatrix(location_viewMatrix,matrix);
+        loadMatrix(location_view_matrix,matrix);
     }
 
     protected override void bindAttributes()

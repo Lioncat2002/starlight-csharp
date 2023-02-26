@@ -8,6 +8,6 @@ uniform sampler2D textureSampler;
 
 void main(){
 
-    out_Color=texture(textureSampler,pass_textureCoords);
+    out_Color=texture(textureSampler,pass_textureCoords);//get the color of each pixel based on the sampler2D variable
 
 }

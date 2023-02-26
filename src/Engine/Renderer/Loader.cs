@@ -49,7 +49,6 @@ public class Loader
                 {
                     fixed (void* data = accessor.GetRowSpan(y))
                     {
-                        
                         //Loading the actual image.
                         Gl.TexSubImage2D(TextureTarget.Texture2D, 0, 0, y, (uint) accessor.Width, 1, PixelFormat.Rgba, PixelType.UnsignedByte, data);
                     }
@@ -66,6 +65,7 @@ public class Loader
         //Setting some texture perameters so the texture behaves as expected.
         Gl.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapS, (int) GLEnum.ClampToEdge);
         Gl.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureWrapT, (int) GLEnum.ClampToEdge);
+        //needed to set it to NearestMipMap nearest so that the pixel images are shown correctly
         Gl.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMinFilter, (int) GLEnum.NearestMipmapNearest);
         Gl.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureMagFilter, (int) GLEnum.Nearest);
         Gl.TexParameter(TextureTarget.Texture2D, TextureParameterName.TextureBaseLevel, 0);

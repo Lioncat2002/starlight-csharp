@@ -23,7 +23,7 @@ namespace StarLight.Engine
             for (int i = 0; i < input.Keyboards.Count; i++)
             {
                 //keydown events
-                input.Keyboards[i].KeyDown += KeyDown;
+                input.Keyboards[i].KeyDown += KeyPress;
                 //keyup events
                 input.Keyboards[i].KeyUp += KeyUp;
             }
@@ -43,23 +43,25 @@ namespace StarLight.Engine
         {
            
         }
-        private static void KeyDown(IKeyboard arg1, Key arg2, int arg3)
+        private static void KeyPress(IKeyboard arg1, Key arg2, int arg3)
         {
             
             //Check to close the window on escape.
             if (arg2 == Key.Escape)
             {
                 window.Close();
+                //dispose the loader and the static shader
                 Loader.dispose();
                 staticShader.dispose();
             }
-
+            //key press events 
             Keyboard.KeyPress(arg2);
             
         }
 
         private static void KeyUp(IKeyboard arg1, Key arg2, int arg3)
         {
+            //key up events
             Keyboard.KeyUp(arg2);
         }
     }

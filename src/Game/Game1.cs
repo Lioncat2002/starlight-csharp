@@ -7,6 +7,7 @@ using StarLight.Engine.Models;
 using StarLight.Engine.Renderer;
 using StarLight.Engine.Shaders;
 using StarLight.Engine.Textures;
+using Starlight.Game.src;
 
 namespace Starlight.Game;
 
@@ -16,7 +17,7 @@ public class Game1:Entry
     private static RawModel? _model;
     private static ModelTexture? _texture;
     private static TexturedModel? _texturedModel;
-    private static Camera? _camera;
+    private static FirstPersonCam? _firstPersonCam;
 
     private static List<Entity>? _level;
     
@@ -81,14 +82,14 @@ public class Game1:Entry
         }
             
         //initialize new camera
-        _camera = new Camera();
+        _firstPersonCam=new FirstPersonCam();
     }
 
     public override void OnUpdate(double deltaTime)
     {
         base.OnUpdate(deltaTime);
         //camera update
-        _camera.move(Keyboard);
+        _firstPersonCam.Move(Keyboard);
         
     }
 
@@ -99,7 +100,7 @@ public class Game1:Entry
         staticShader.start();
         _renderer.start();
         //load the view matrix of camera
-        staticShader.loadViewMatrix(_camera);
+        staticShader.loadViewMatrix(_firstPersonCam);
         //render the entities
         foreach (var obj in _level)
         {

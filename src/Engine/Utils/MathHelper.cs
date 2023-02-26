@@ -13,8 +13,8 @@ public class MathHelper
         Matrix4x4 matrix=Matrix4x4.Identity;
         matrix *= Matrix4x4.CreateTranslation(translation);
         matrix *= Matrix4x4.CreateRotationY(DegreesToRadians(rotation.Y));
-        matrix*=Matrix4x4.CreateRotationX(DegreesToRadians(rotation.X));
-        matrix*=Matrix4x4.CreateRotationZ(DegreesToRadians(rotation.Z));
+        matrix *= Matrix4x4.CreateRotationX(DegreesToRadians(rotation.X));
+        matrix *= Matrix4x4.CreateRotationZ(DegreesToRadians(rotation.Z));
         matrix *= Matrix4x4.CreateScale(scale);
         return matrix;
     }

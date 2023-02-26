@@ -2,15 +2,10 @@ namespace StarLight.Engine.Textures;
 
 public class ModelTexture
 {
-    private uint textureID;
+    public uint TextureId { get; set; }
 
     public ModelTexture(uint id)
     {
-        this.textureID = id;
-    }
-
-    public uint getID()
-    {
-        return this.textureID;
+        TextureId = id;
     }
 }

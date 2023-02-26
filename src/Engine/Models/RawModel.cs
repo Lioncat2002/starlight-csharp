@@ -2,22 +2,14 @@ namespace StarLight.Engine.Models;
 
 public class RawModel
 {
-    private uint vaoID;
-    private uint vertexCount;
+    public uint VaoId { get; set; }
+
+    public uint VertexCount { get; set; }
 
     public RawModel(uint vaoID, uint vertexCount)
     {
-        this.vaoID = vaoID;
-        this.vertexCount = vertexCount;
+        this.VaoId = vaoID;
+        this.VertexCount = vertexCount;
     }
-
-    public uint getVaoID()
-    {
-        return vaoID;
-    }
-
-    public uint getVertexCount()
-    {
-        return vertexCount;
-    }
+    
 }
