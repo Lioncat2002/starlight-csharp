@@ -10,11 +10,11 @@ public class FirstPersonCam: Camera
     private Vector3 _forward;
     public void Move(Keyboard keyboard)
     {
-        var lookAtMat = GetViewMatrix();
+        var lookAtMat = GetViewMatrix();//Method in base class
         
-        _forward = new Vector3(lookAtMat.M13,lookAtMat.M23,lookAtMat.M33);
-        Vector3 rightVector = new Vector3(lookAtMat.M11,lookAtMat.M21,lookAtMat.M31);
-        
+        _forward = new Vector3(lookAtMat.M13,lookAtMat.M23,lookAtMat.M33);//get the forward vector
+        Vector3 rightVector = new Vector3(lookAtMat.M11,lookAtMat.M21,lookAtMat.M31);//get the right vector
+        //normalization
         _forward=Vector3.Normalize(_forward);
         rightVector = Vector3.Normalize(rightVector);
         

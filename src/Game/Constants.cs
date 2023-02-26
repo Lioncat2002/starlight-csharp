@@ -2,7 +2,7 @@ namespace Starlight.Game;
 
 public class Constants
 {
-	//
+	//Vertex data
     public static readonly float[] Vertices = {			
         -0.5f,0.5f,-0.5f,	
         -0.5f,-0.5f,-0.5f,	
@@ -36,7 +36,7 @@ public class Constants
 				
     };
 
-    //Index data, uploaded to the EBO.
+    //Index data
     public static readonly int[] Indices = {
         0,1,3,	
         3,1,2,	
@@ -52,7 +52,7 @@ public class Constants
         23,21,22
 
     };
-
+	//texture uv data
     public static readonly float[] TextureCoords = {
 				
         0,0,
@@ -79,7 +79,5 @@ public class Constants
         0,1,
         1,1,
         1,0
-
-				
     };
 }
